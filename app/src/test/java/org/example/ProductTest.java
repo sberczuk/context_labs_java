@@ -23,7 +23,7 @@ class ProductTest {
 
     @Test
     public void testProductAttributes(){
-        Product product = new Product(new ArrayList<>());
+        Product product = new Product("", new ArrayList<>());
         product.addAttribute(new StringAttribute("Color", "Blue"));
         product.addAttribute(new BooleanAttribute("tarif", FALSE));
         product.addAttribute(new DecimalAttribute("price", new BigDecimal(100.75)));
@@ -53,7 +53,7 @@ class ProductTest {
 
         List<Product> products = new ArrayList<>();
         System.out.println(new App().getGreeting());
-        Product product = new Product(new ArrayList<>());
+        Product product = new Product("", new ArrayList<>());
         product.addAttribute(new StringAttribute("color", "Blue"));
         product.addAttribute(new BooleanAttribute("tarif", FALSE));
         product.addAttribute(new DecimalAttribute("price", new BigDecimal("100.75")));
@@ -62,7 +62,7 @@ class ProductTest {
         ProductRule.MatchStatus result = productRule.apply(product);
         assertEquals(2, result.numMatches);
 
-        Product product2 = new Product(new ArrayList<>());
+        Product product2 = new Product("", new ArrayList<>());
         product2.addAttribute(new StringAttribute("color", "Red"));
         product2.addAttribute(new BooleanAttribute("tarif", FALSE));
         product2.addAttribute(new DecimalAttribute("price", new BigDecimal("100.99")));

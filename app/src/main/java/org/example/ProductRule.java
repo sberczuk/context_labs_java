@@ -3,6 +3,8 @@ package org.example;
 import java.util.List;
 
 public class ProductRule {
+
+
     public static class MatchStatus {
         public int numMatches;
         public int numConditions;
@@ -32,6 +34,9 @@ public class ProductRule {
         this.score = score;
     }
 
+    public float getScore() {
+        return this.score;
+    }
     public MatchStatus apply(Product p) {
         int matches = 0;
 

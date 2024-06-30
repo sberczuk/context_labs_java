@@ -17,13 +17,13 @@ public class App {
     public static void main(String[] args) {
         List<Product> products = new ArrayList<>();
         System.out.println(new App().getGreeting());
-        Product product = new Product(new ArrayList<>());
+        Product product = new Product("", new ArrayList<>());
         product.addAttribute(new StringAttribute("Color", "Blue"));
         product.addAttribute(new BooleanAttribute("tarif", FALSE));
         product.addAttribute(new DecimalAttribute("price", new BigDecimal("100.75")));
         products.add(product);
 
-        Product product2 = new Product(new ArrayList<>());
+        Product product2 = new Product("", new ArrayList<>());
         product2.addAttribute(new StringAttribute("color", "Red"));
         product2.addAttribute(new BooleanAttribute("tarif", FALSE));
         product2.addAttribute(new DecimalAttribute("price", new BigDecimal("100.99")));
@@ -44,14 +44,31 @@ public class App {
         for (Condition c : conditions) {
             System.out.println(c);
         }
+
+        List<ProductRule> rules = new ArrayList<>();
         ProductRule productRule = new ProductRule(conditions, 100);
+        rules.add(productRule);
         System.out.println("---");
 
-
+        float maxPossibleScore = 0;
         for (Product p : products) {
             System.out.println("\n\nProcessing product " + p );
-            ProductRule.MatchStatus result = productRule.apply(p);
-            System.out.println("\n>> result "+result);
+            for (ProductRule rule : rules) {
+                maxPossibleScore = maxPossibleScore + rule.getScore();
+                ProductRule.MatchStatus result = productRule.apply(p);
+                p.setScore(result.resultScore());
+                System.out.println("\n>> result "+result);
+            }
+
         }
+
+        // filter
+        final float threshold = maxPossibleScore/2;
+        System.out.println("Products with score greater than "+ threshold + ">>");
+        List<Product> filteredProducts = products.stream().filter(p -> p.getScore() >= threshold).toList();
+        for (Product p : filteredProducts) {
+            System.out.println(p);
+        }
+
     }
 }

@@ -39,7 +39,7 @@ class ProductRuleTest {
         attribs.add(new DecimalAttribute("price", new BigDecimal("23.75")));
         attribs.add(new StringAttribute("color", "Blue"));
 
-        Product product1 = new Product(attribs);
+        Product product1 = new Product("", attribs);
 
         Condition<String> colorCondition = new Condition<>("color", new EqualsOperator<String>(), "Blue");
         Condition<BigDecimal> priceCondition = new Condition<>("price", new GreaterThan<>(), new BigDecimal("10.00"));
@@ -62,7 +62,7 @@ class ProductRuleTest {
         attribs.add(new DecimalAttribute("price", new BigDecimal("23.75")));
         attribs.add(new StringAttribute("color", "Orange"));
 
-        Product product1 = new Product(attribs);
+        Product product1 = new Product("", attribs);
 
         Condition<String> colorCondition = new Condition<>("color", new EqualsOperator<String>(), "Blue");
         Condition<BigDecimal> priceCondition = new Condition<>("price", new GreaterThan<>(), new BigDecimal("10.00"));

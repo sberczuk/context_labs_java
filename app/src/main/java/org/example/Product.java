@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,12 +9,17 @@ public class Product {
     // I'm  not entirely user about the unparameterized type use here.
     // but it seems better than just using an Object or having the values all be Objects
     Map<String, ProductAttribute> attributes = new HashMap<>();
-    public Product(List<ProductAttribute> p) {
+    float score;
+    String name;
+    public Product(String name, List<ProductAttribute> p) {
         for (ProductAttribute pa : p) {
             this.addAttribute(pa);
         }
     }
 
+    public void setScore(float score) {
+        this.score = score;
+    }
     public void addAttribute(ProductAttribute attrib) {
         attributes.put(attrib.GetName(), attrib);
     }
@@ -33,4 +37,7 @@ public class Product {
     }
 
 
+    public float getScore() {
+        return score;
+    }
 }
