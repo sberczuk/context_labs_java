@@ -70,5 +70,10 @@ public class App {
             System.out.println(p);
         }
 
+
+        // calc total and average
+       BigDecimal total =  filteredProducts.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println("avergae price: " +total.divide(BigDecimal.valueOf(filteredProducts.size())));
+
     }
 }

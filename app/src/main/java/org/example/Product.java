@@ -1,5 +1,6 @@
 package org.example;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,10 @@ public class Product {
         return String.format("Product with Attributes:\n%s\n\n", str);
     }
 
-
+    // we should always have this attribute
+    public BigDecimal getPrice(){
+        return (BigDecimal)getAttribute("price").GetValue();
+    }
     public float getScore() {
         return score;
     }
