@@ -8,10 +8,10 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GreaterThanTest {
-    static class GreaterhanTestData{
+    static class GreaterThanTestData {
         Integer lVal;
         Integer rVal;
-        public GreaterhanTestData(Integer lVal, Integer rVal, boolean want) {
+        public GreaterThanTestData(Integer lVal, Integer rVal, boolean want) {
             this.lVal = lVal;
             this.rVal = rVal;
             this.want = want;
@@ -20,10 +20,10 @@ class GreaterThanTest {
         boolean want;
     }
 
-    static Stream<GreaterhanTestData> data(){
-        return Stream.of(new GreaterhanTestData(1,2,false)
-                , new GreaterhanTestData(2,2,false)
-                , new GreaterhanTestData(4,3,true)
+    static Stream<GreaterThanTestData> data(){
+        return Stream.of(new GreaterThanTestData(1,2,false)
+                , new GreaterThanTestData(2,2,false)
+                , new GreaterThanTestData(4,3,true)
         );
     }
 
@@ -31,7 +31,7 @@ class GreaterThanTest {
     // An Attempt to mimic table tests
     @ParameterizedTest()
     @MethodSource("data")
-    void apply(GreaterhanTestData tt) {
+    void apply(GreaterThanTestData tt) {
         GreaterThan<Integer> c = new GreaterThan<>();
         boolean got = c.apply(tt.lVal, tt.rVal);
         assertEquals( tt.want, got,String.format("compare %d, %d", tt.lVal, tt.rVal));
