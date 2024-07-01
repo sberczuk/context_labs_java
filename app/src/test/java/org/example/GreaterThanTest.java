@@ -8,22 +8,14 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GreaterThanTest {
-    static class GreaterThanTestData {
-        Integer lVal;
-        Integer rVal;
-        public GreaterThanTestData(Integer lVal, Integer rVal, boolean want) {
-            this.lVal = lVal;
-            this.rVal = rVal;
-            this.want = want;
-        }
+    record GreaterThanTestData(Integer lVal,
+                               Integer rVal,
+                               boolean want){}
 
-        boolean want;
-    }
-
-    static Stream<GreaterThanTestData> data(){
-        return Stream.of(new GreaterThanTestData(1,2,false)
-                , new GreaterThanTestData(2,2,false)
-                , new GreaterThanTestData(4,3,true)
+    static Stream<GreaterThanTestData> data() {
+        return Stream.of(new GreaterThanTestData(1, 2, false)
+                , new GreaterThanTestData(2, 2, false)
+                , new GreaterThanTestData(4, 3, true)
         );
     }
 
@@ -34,6 +26,6 @@ class GreaterThanTest {
     void apply(GreaterThanTestData tt) {
         GreaterThan<Integer> c = new GreaterThan<>();
         boolean got = c.apply(tt.lVal, tt.rVal);
-        assertEquals( tt.want, got,String.format("compare %d, %d", tt.lVal, tt.rVal));
+        assertEquals(tt.want, got, String.format("compare %d, %d", tt.lVal, tt.rVal));
     }
 }
